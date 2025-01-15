@@ -6,21 +6,85 @@ import {useAside} from '~/components/Aside';
 /**
  * @param {HeaderProps}
  */
-export function Header({header, isLoggedIn, cart, publicStoreDomain}) {
+// export function Header({header, isLoggedIn, cart, publicStoreDomain}) {
+//   const {shop, menu} = header;
+//   return (
+//     <header className="header">
+//       <NavLink prefetch="intent" to="/" style={activeLinkStyle} end>
+//         <strong>{shop.name}</strong>
+//       </NavLink>
+//       <HeaderMenu
+//         menu={menu}
+//         viewport="desktop"
+//         primaryDomainUrl={header.shop.primaryDomain.url}
+//         publicStoreDomain={publicStoreDomain}
+//       />
+//       <HeaderCtas isLoggedIn={isLoggedIn} cart={cart} />
+//     </header>
+//   );
+// }
+export function Header({
+  header,
+  isLoggedIn,
+  cart,
+  publicStoreDomain,
+  scrollToTop,
+}) {
   const {shop, menu} = header;
+
   return (
-    <header className="header">
-      <NavLink prefetch="intent" to="/" style={activeLinkStyle} end>
-        <strong>{shop.name}</strong>
-      </NavLink>
-      <HeaderMenu
-        menu={menu}
-        viewport="desktop"
-        primaryDomainUrl={header.shop.primaryDomain.url}
-        publicStoreDomain={publicStoreDomain}
-      />
-      <HeaderCtas isLoggedIn={isLoggedIn} cart={cart} />
-    </header>
+    <div>
+      <div
+        style={{
+          position: 'fixed',
+          top: '10px',
+          left: '20px',
+          zIndex: 1,
+          color: '#fff',
+          padding: '10px',
+          cursor: 'pointer',
+          display: 'flex',
+          justifyContent: 'flex-start',
+        }}
+      >
+        <HeaderMenu
+          menu={menu}
+          viewport="desktop"
+          primaryDomainUrl={header.shop.primaryDomain.url}
+          publicStoreDomain={publicStoreDomain}
+          scrollToTop={scrollToTop}
+        />
+        {/* <HeaderCtas isLoggedIn={isLoggedIn} cart={cart} /> */}
+      </div>
+      <div
+        style={{
+          position: 'fixed',
+          top: '10px',
+          right: '20px',
+          zIndex: 2,
+          color: '#fff',
+          padding: '10px',
+          cursor: 'pointer',
+          display: 'flex',
+          justifyContent: 'flex-start',
+        }}
+      >
+        <HeaderCtas isLoggedIn={isLoggedIn} cart={cart} />
+      </div>
+    </div>
+
+    // <header className="header">
+    //   <NavLink prefetch="intent" to="/" style={activeLinkStyle} end>
+    //     <strong>{shop.name}</strong>
+    //   </NavLink>
+    //   <HeaderMenu
+    //     menu={menu}
+    //     viewport="desktop"
+    //     primaryDomainUrl={header.shop.primaryDomain.url}
+    //     publicStoreDomain={publicStoreDomain}
+    //   />
+    //   <HeaderCtas isLoggedIn={isLoggedIn} cart={cart} />
+    // </header>
   );
 }
 
@@ -32,56 +96,71 @@ export function Header({header, isLoggedIn, cart, publicStoreDomain}) {
  *   publicStoreDomain: HeaderProps['publicStoreDomain'];
  * }}
  */
+// export function HeaderMenu({
+//   menu,
+//   primaryDomainUrl,
+//   viewport,
+//   publicStoreDomain,
+// }) {
+//   const className = `header-menu-${viewport}`;
+//   const {close} = useAside();
+
+//   return (
+//     <nav className={className} role="navigation">
+//       {viewport === 'mobile' && (
+//         <NavLink
+//           end
+//           onClick={close}
+//           prefetch="intent"
+//           style={activeLinkStyle}
+//           to="/"
+//         >
+//           Home
+//         </NavLink>
+//       )}
+//       {(menu || FALLBACK_HEADER_MENU).items.map((item) => {
+//         if (!item.url) return null;
+
+//         // if the url is internal, we strip the domain
+//         const url =
+//           item.url.includes('myshopify.com') ||
+//           item.url.includes(publicStoreDomain) ||
+//           item.url.includes(primaryDomainUrl)
+//             ? new URL(item.url).pathname
+//             : item.url;
+//         return (
+//           <NavLink
+//             className="header-menu-item"
+//             end
+//             key={item.id}
+//             onClick={close}
+//             prefetch="intent"
+//             style={activeLinkStyle}
+//             to={url}
+//           >
+//             {item.title}
+//           </NavLink>
+//         );
+//       })}
+//     </nav>
+//   );
+// }
 export function HeaderMenu({
   menu,
   primaryDomainUrl,
   viewport,
   publicStoreDomain,
+  scrollToTop,
 }) {
-  const className = `header-menu-${viewport}`;
+  //const className = `header-menu-${viewport}`;
   const {close} = useAside();
 
   return (
-    <nav className={className} role="navigation">
-      {viewport === 'mobile' && (
-        <NavLink
-          end
-          onClick={close}
-          prefetch="intent"
-          style={activeLinkStyle}
-          to="/"
-        >
-          Home
-        </NavLink>
-      )}
-      {(menu || FALLBACK_HEADER_MENU).items.map((item) => {
-        if (!item.url) return null;
-
-        // if the url is internal, we strip the domain
-        const url =
-          item.url.includes('myshopify.com') ||
-          item.url.includes(publicStoreDomain) ||
-          item.url.includes(primaryDomainUrl)
-            ? new URL(item.url).pathname
-            : item.url;
-        return (
-          <NavLink
-            className="header-menu-item"
-            end
-            key={item.id}
-            onClick={close}
-            prefetch="intent"
-            style={activeLinkStyle}
-            to={url}
-          >
-            {item.title}
-          </NavLink>
-        );
-      })}
-    </nav>
+    <button className="header-button" onClick={scrollToTop}>
+      RUSTBUCKET <br /> <span style={{fontSize: '14px'}}>PIZZA & CO</span>
+    </button>
   );
 }
-
 /**
  * @param {Pick<HeaderProps, 'isLoggedIn' | 'cart'>}
  */
@@ -96,7 +175,6 @@ function HeaderCtas({isLoggedIn, cart}) {
           </Await>
         </Suspense>
       </NavLink>
-      <SearchToggle />
       <CartToggle cart={cart} />
     </nav>
   );

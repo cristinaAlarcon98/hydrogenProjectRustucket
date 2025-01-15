@@ -1,5 +1,5 @@
-import {Await, Link} from '@remix-run/react';
-import {Suspense, useId} from 'react';
+import {Await, Link, useNavigate} from '@remix-run/react';
+import {Suspense, useId, useRef} from 'react';
 import {Aside} from '~/components/Aside';
 import {Footer} from '~/components/Footer';
 import {Header, HeaderMenu} from '~/components/Header';
@@ -21,8 +21,25 @@ export function PageLayout({
   isLoggedIn,
   publicStoreDomain,
 }) {
+  const topRef = useRef(null);
+  const navigate = useNavigate();
+
+  const scrollToTop = () => {
+    // Check if we are on the main page
+    if (window.location.pathname === '/') {
+      // If on the main page, scroll to the top
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    } else {
+      // If on a different page, navigate to the main page
+      navigate('/');
+    }
+  };
   return (
     <Aside.Provider>
+      <div ref={topRef}></div>
       <CartAside cart={cart} />
       <SearchAside />
       <MobileMenuAside header={header} publicStoreDomain={publicStoreDomain} />
@@ -32,14 +49,15 @@ export function PageLayout({
           cart={cart}
           isLoggedIn={isLoggedIn}
           publicStoreDomain={publicStoreDomain}
+          scrollToTop={scrollToTop}
         />
       )}
       <main>{children}</main>
-      <Footer
+      {/* <Footer
         footer={footer}
         header={header}
         publicStoreDomain={publicStoreDomain}
-      />
+      /> */}
     </Aside.Provider>
   );
 }

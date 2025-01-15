@@ -2,6 +2,9 @@ import {defer} from '@shopify/remix-oxygen';
 import {Await, useLoaderData, Link} from '@remix-run/react';
 import {Suspense} from 'react';
 import {Image, Money} from '@shopify/hydrogen';
+import Button from '@mui/material/Button';
+import {HomeComponent} from '../components/HomeComponent';
+import {useNavigate} from 'react-router-dom';
 
 /**
  * @type {MetaFunction}
@@ -64,8 +67,8 @@ export default function Homepage() {
   const data = useLoaderData();
   return (
     <div className="home">
-      <FeaturedCollection collection={data.featuredCollection} />
-      <RecommendedProducts products={data.recommendedProducts} />
+      <HomeComponent data={data}></HomeComponent>
+      {/* <FeaturedCollection collection={data.featuredCollection} /> */}
     </div>
   );
 }
@@ -75,7 +78,7 @@ export default function Homepage() {
  *   collection: FeaturedCollectionFragment;
  * }}
  */
-function FeaturedCollection({collection}) {
+export function FeaturedCollection({collection}) {
   if (!collection) return null;
   const image = collection?.image;
   return (
@@ -98,37 +101,147 @@ function FeaturedCollection({collection}) {
  *   products: Promise<RecommendedProductsQuery | null>;
  * }}
  */
-function RecommendedProducts({products}) {
+export function RecommendedProducts({products}) {
+  const navigate = useNavigate();
   return (
     <div className="recommended-products">
-      <h2>Recommended Products</h2>
       <Suspense fallback={<div>Loading...</div>}>
+        <Await resolve={products}>
+          {(response) => (
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'center',
+                gap: '5rem',
+                marginTop: '5rem',
+              }}
+            >
+              {response && (
+                <>
+                  <div style={{height: '500px', position: 'relative'}}>
+                    <img
+                      src="../../public/assets/dough-membership.png"
+                      alt={response.products.nodes[0].title || 'Product Image'}
+                      style={{height: '100%', objectFit: 'cover'}}
+                    />
+                    <div
+                      style={{
+                        position: 'absolute',
+                        top: '90%',
+                        left: '57%',
+                        transform: 'translate(-90%, -57%)',
+                      }}
+                    >
+                      <Button
+                        className="red-button"
+                        onClick={() =>
+                          navigate(
+                            `/products/${response.products.nodes[0].handle}`,
+                          )
+                        }
+                      >
+                        JOIN NOW
+                      </Button>
+                    </div>
+                  </div>
+                  <div style={{height: '500px', position: 'relative'}}>
+                    <img
+                      src="../../public/assets/margherita-membership.png"
+                      alt={response.products.nodes[1].title || 'Product Image'}
+                      style={{height: '100%', objectFit: 'cover'}}
+                    />
+                    <div
+                      style={{
+                        position: 'absolute',
+                        top: '90%',
+                        left: '57%',
+                        transform: 'translate(-90%, -57%)',
+                      }}
+                    >
+                      <Button
+                        className="red-button"
+                        onClick={() =>
+                          navigate(
+                            `/products/${response.products.nodes[1].handle}`,
+                          )
+                        }
+                      >
+                        JOIN NOW
+                      </Button>
+                    </div>
+                  </div>
+
+                  <div style={{height: '500px', position: 'relative'}}>
+                    <img
+                      src="../../public/assets/supreme-membership.png"
+                      alt={response.products.nodes[2].title || 'Product Image'}
+                      style={{height: '100%', objectFit: 'cover'}}
+                    />
+                    <div
+                      style={{
+                        position: 'absolute',
+                        top: '90%',
+                        left: '57%',
+                        transform: 'translate(-90%, -57%)',
+                      }}
+                    >
+                      <Button
+                        className="red-button"
+                        onClick={() =>
+                          navigate(
+                            `/products/${response.products.nodes[2].handle}`,
+                          )
+                        }
+                      >
+                        JOIN NOW
+                      </Button>
+                    </div>
+                  </div>
+
+                  {/* Add more divs and img tags for each product as needed */}
+                </>
+              )}
+            </div>
+          )}
+        </Await>
+      </Suspense>
+      {/* <Suspense fallback={<div>Loading...</div>}>
         <Await resolve={products}>
           {(response) => (
             <div className="recommended-products-grid">
               {response
                 ? response.products.nodes.map((product) => (
-                    <Link
-                      key={product.id}
-                      className="recommended-product"
-                      to={`/products/${product.handle}`}
-                    >
+                    <div key={product.id} style={{height: '300px'}}>
                       <Image
                         data={product.images.nodes[0]}
                         aspectRatio="1/1"
                         sizes="(min-width: 45em) 20vw, 50vw"
+                        style={{height: '100%', objectFit: 'cover'}}
                       />
-                      <h4>{product.title}</h4>
-                      <small>
-                        <Money data={product.priceRange.minVariantPrice} />
-                      </small>
-                    </Link>
+                    </div>
+                    // <Link
+                    //   key={product.id}
+                    //   className="recommended-product"
+                    //   to={`/products/${product.handle}`}
+                    // >
+                    //   <Image
+                    //     data={product.images.nodes[0]}
+                    //     aspectRatio="1/1"
+                    //     sizes="(min-width: 45em) 20vw, 50vw"
+                    //   />
+                    //   <h4>{product.title}</h4>
+                    //   <small>
+                    //     <Money data={product.priceRange.minVariantPrice} />
+                    //   </small>
+                    // </Link>
                   ))
                 : null}
             </div>
           )}
         </Await>
-      </Suspense>
+      </Suspense> */}
       <br />
     </div>
   );
