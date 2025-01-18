@@ -12,15 +12,30 @@ export function ProductForm({productOptions, selectedVariant}) {
   const navigate = useNavigate();
   const {open} = useAside();
   return (
-    <div className="product-form">
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+      }}
+    >
       {productOptions.map((option) => {
         // If there is only a single value in the option values, don't display the option
         if (option.optionValues.length === 1) return null;
 
         return (
-          <div className="product-options" key={option.name}>
-            <h5>{option.name}</h5>
-            <div className="product-options-grid">
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              flexDirection: 'column',
+            }}
+            key={option.name}
+          >
+            <h2>{option.name}</h2>
+            <div>
               {option.optionValues.map((value) => {
                 const {
                   name,
