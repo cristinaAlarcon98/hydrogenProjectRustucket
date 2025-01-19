@@ -122,6 +122,7 @@ export default function Product() {
           marginTop: '2rem',
           gap: '4rem',
           maxWidth: '800px',
+          marginBottom: '50px',
         }}
       >
         {/* <ProductImage image={selectedVariant?.image} /> */}

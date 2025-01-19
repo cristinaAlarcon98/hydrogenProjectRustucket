@@ -167,7 +167,7 @@ export function HomeComponent({data}) {
             }}
           >
             <img
-              src="../../public/assets/pizza-dough.jpg"
+              src="/assets/pizza-dough.jpg"
               alt="Pizza Dough 1"
               style={{
                 width: '100%',
@@ -189,7 +189,7 @@ export function HomeComponent({data}) {
               flexDirection: 'column',
             }}
           >
-            <h2 style={{color: 'white', textAlign: 'left'}}>PIZZA DOUGH</h2>
+            <h3 style={{color: 'white', textAlign: 'left'}}>PIZZA DOUGH</h3>
             <p
               style={{
                 color: 'white',
@@ -246,7 +246,7 @@ export function HomeComponent({data}) {
               flexDirection: 'column',
             }}
           >
-            <h2 style={{color: '#333333'}}>TOMATO SAUCE</h2>
+            <h3 style={{color: '#333333'}}>TOMATO SAUCE</h3>
             <p
               style={{
                 color: '#333333',
@@ -275,7 +275,7 @@ export function HomeComponent({data}) {
             }}
           >
             <img
-              src="../../public/assets/ingredients-tomato.jpg"
+              src="/assets/ingredients-tomato.jpg"
               alt="Pizza Dough 1"
               style={{
                 width: '100%',
@@ -304,10 +304,7 @@ export function HomeComponent({data}) {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            // flexWrap: 'wrap',
             gap: '7rem', // Ensures spacing between columns
-
-            //flexDirection: 'column-reverse',
           }}
         >
           <div
@@ -322,7 +319,7 @@ export function HomeComponent({data}) {
             }}
           >
             <img
-              src="../../public/assets/ingredients-mozzarella.jpg"
+              src="/assets/ingredients-mozzarella.jpg"
               alt="Pizza Dough 1"
               style={{
                 width: '100%',
@@ -345,7 +342,7 @@ export function HomeComponent({data}) {
               flexDirection: 'column',
             }}
           >
-            <h2 style={{color: 'white'}}>MOZZARELLA</h2>
+            <h3 style={{color: 'white'}}>MOZZARELLA</h3>
             <p
               style={{
                 color: 'white',
