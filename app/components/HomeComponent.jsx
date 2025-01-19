@@ -345,21 +345,21 @@ export function HomeComponent({data}) {
               flexDirection: 'column',
             }}
           >
-            <h2 style={{color: 'white'}}>PIZZA DOUGH</h2>
+            <h2 style={{color: 'white'}}>MOZZARELLA</h2>
             <p
               style={{
                 color: 'white',
                 fontSize: '20px',
               }}
             >
-              Freshly prepared dough, made daily with high-quality ingredients
-              to ensure the perfect base for your favorite toppings! Our dough
-              is crafted using a traditional recipe, allowing it to develop a
-              rich flavor and light, airy texture. It's hand-stretched and
-              prepped to perfection, providing a crispy exterior with a soft,
-              fluffy interior in every bite. Whether you prefer classic
-              Margherita or loaded supreme, our dough is the ideal canvas for
-              your pizza creations!
+              Freshly sourced mozzarella, made daily with high-quality milk to
+              ensure the perfect topping for your favorite pizzas! Our
+              mozzarella is crafted using a traditional method, allowing it to
+              develop a rich, creamy flavor and a perfect melt. It's shredded
+              and prepped to perfection, providing a stretchy, gooey texture in
+              every bite. Whether you prefer classic Margherita or loaded
+              supreme, our mozzarella is the ideal finishing touch for your
+              pizza creations!
             </p>
           </div>
         </div>
