@@ -1,6 +1,7 @@
 import {Link, useNavigate} from '@remix-run/react';
 import {AddToCartButton} from './AddToCartButton';
 import {useAside} from './Aside';
+import Button from '@mui/material/Button';
 
 /**
  * @param {{
@@ -18,6 +19,7 @@ export function ProductForm({productOptions, selectedVariant}) {
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'column',
+        gap: '2rem',
       }}
     >
       {productOptions.map((option) => {
@@ -31,10 +33,11 @@ export function ProductForm({productOptions, selectedVariant}) {
               justifyContent: 'center',
               alignItems: 'center',
               flexDirection: 'column',
+              gap: '2rem',
             }}
             key={option.name}
           >
-            <h2>{option.name}</h2>
+            <h3 style={{color: '#f3f3f3'}}>{option.name}</h3>
             <div>
               {option.optionValues.map((value) => {
                 const {
@@ -78,17 +81,26 @@ export function ProductForm({productOptions, selectedVariant}) {
                   // the variant so that SEO bots do not index these as
                   // duplicated links
                   return (
-                    <button
+                    <Button
                       type="button"
-                      className={`product-options-item${
-                        exists && !selected ? ' link' : ''
-                      }`}
+                      // className={`product-options-item${
+                      //   exists && !selected ? ' link' : ''
+                      // }`}
                       key={option.name + name}
+                      className="main-button"
+                      onMouseEnter={(e) =>
+                        e.target.classList.add('hovered-button')
+                      }
+                      onMouseLeave={(e) =>
+                        e.target.classList.remove('hovered-button')
+                      }
                       style={{
-                        border: selected
-                          ? '1px solid black'
-                          : '1px solid transparent',
-                        opacity: available ? 1 : 0.3,
+                        marginRight: '2rem',
+
+                        opacity: selected ? 1 : 1, // Example background for selected
+                        backgroundColor: selected
+                          ? 'rgb(111, 219, 181)'
+                          : 'rgb(0, 84, 55)', // Text color for selected
                       }}
                       disabled={!exists}
                       onClick={() => {
@@ -101,7 +113,7 @@ export function ProductForm({productOptions, selectedVariant}) {
                       }}
                     >
                       <ProductOptionSwatch swatch={swatch} name={name} />
-                    </button>
+                    </Button>
                   );
                 }
               })}

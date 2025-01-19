@@ -115,22 +115,60 @@ export default function Product() {
     >
       <div
         style={{
-          width: '90%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           flexDirection: 'column',
-          gap: '7rem',
-          marginTop: '5rem',
+          marginTop: '2rem',
+          gap: '4rem',
+          maxWidth: '800px',
         }}
       >
         {/* <ProductImage image={selectedVariant?.image} /> */}
 
-        <h2>{title}</h2>
-        <p>
-          <strong>Description</strong>
-        </p>
-        <div dangerouslySetInnerHTML={{__html: descriptionHtml}} />
+        <h3 style={{color: 'white'}}>{title}</h3>
+        {title === 'DOUGH SUBSCRIPTION' ? (
+          <p
+            style={{
+              color: 'white',
+              fontSize: '20px',
+              textAlign: 'center',
+            }}
+          >
+            🍕🍕🍕🍕🍕🍕🍕Enjoy our fresh, handcrafted pizza dough made by our
+            expert chefs at RUSTBUCKET. How does it work? Simply choose your
+            favorite type of dough, select the quantity you need, and decide how
+            often you'd like it delivered. Whether you prefer weekly, bi-weekly,
+            or monthly deliveries, we've got you covered. Plus, you can easily
+            unsubscribe at any time—no strings attached!🍕🍕🍕🍕🍕🍕🍕
+          </p>
+        ) : title === 'MARGHERITA SUBSCRIPTION' ? (
+          <p style={{color: 'white', fontSize: '20px', textAlign: 'center'}}>
+            🍕🍕🍕🍕🍕🍕🍕Enjoy the perfect Margherita pizza experience with our
+            subscription, which includes fresh, handcrafted pizza dough, rich
+            tomato sauce, and fragrant basil sleeves, all made with care by our
+            expert chefs at RUSTBUCKET. How does it work? Simply choose your
+            preferred kit, select the quantity, and pick how often you'd like it
+            delivered. Whether you prefer weekly, bi-weekly, or monthly
+            deliveries, we'll make sure you have everything you need for an
+            authentic pizza experience. Plus, you can easily unsubscribe at any
+            time—no strings attached!🍕🍕🍕🍕🍕🍕🍕
+          </p>
+        ) : (
+          <p style={{color: 'white', fontSize: '20px', textAlign: 'center'}}>
+            🍕🍕🍕🍕🍕🍕🍕Elevate your pizza game with our Supreme subscription!
+            This kit includes our fresh, handcrafted pizza dough, rich tomato
+            sauce, basil sleeves, and extra gourmet ingredients carefully
+            selected by our expert chefs at RUSTBUCKET. How does it work? Simply
+            choose your preferred kit, select the quantity, and decide how often
+            you'd like it delivered. Whether you want weekly, bi-weekly, or
+            monthly deliveries, we'll make sure you're always ready to enjoy a
+            Supreme pizza experience. And remember, you can unsubscribe at any
+            time—no hassle, no commitment!🍕🍕🍕🍕🍕🍕🍕
+          </p>
+        )}
+
+        {/* <div dangerouslySetInnerHTML={{__html: descriptionHtml}} /> */}
         <ProductForm
           productOptions={productOptions}
           selectedVariant={selectedVariant}
@@ -151,11 +189,34 @@ export default function Product() {
             ],
           }}
         />
-        <ProductPrice
-          price={selectedVariant?.price}
-          compareAtPrice={selectedVariant?.compareAtPrice}
-        />
       </div>
+      <footer
+        style={{
+          display: 'flex',
+          backgroundColor: '#9c2029',
+          justifyContent: 'center',
+          alignItems: 'center',
+          width: '100%',
+          position: 'fixed',
+          bottom: 0,
+          height: '60px',
+        }}
+      >
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: '2rem',
+          }}
+        >
+          <h2 className="price">TOTAL PRICE:</h2>
+          <ProductPrice
+            price={selectedVariant?.price}
+            compareAtPrice={selectedVariant?.compareAtPrice}
+          />
+        </div>
+      </footer>
     </section>
   );
 }
