@@ -167,7 +167,7 @@ export function HomeComponent({data}) {
             }}
           >
             <img
-              src="../../public/assets/pizza-dough.png"
+              src="../../public/assets/pizza-dough.jpg"
               alt="Pizza Dough 1"
               style={{
                 width: '100%',
@@ -275,7 +275,7 @@ export function HomeComponent({data}) {
             }}
           >
             <img
-              src="../../public/assets/ingredients-tomato.png"
+              src="../../public/assets/ingredients-tomato.jpg"
               alt="Pizza Dough 1"
               style={{
                 width: '100%',
@@ -322,7 +322,7 @@ export function HomeComponent({data}) {
             }}
           >
             <img
-              src="../../public/assets/ingredients-mozzarella.png"
+              src="../../public/assets/ingredients-mozzarella.jpg"
               alt="Pizza Dough 1"
               style={{
                 width: '100%',

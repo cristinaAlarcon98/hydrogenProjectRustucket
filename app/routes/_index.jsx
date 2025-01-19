@@ -122,7 +122,7 @@ export function RecommendedProducts({products}) {
                 <>
                   <div style={{height: '500px', position: 'relative'}}>
                     <img
-                      src="../../public/assets/dough-membership.png"
+                      src="../../public/assets/dough-membership.jpg"
                       alt={response.products.nodes[0].title || 'Product Image'}
                       style={{height: '100%', objectFit: 'cover'}}
                     />
@@ -148,7 +148,7 @@ export function RecommendedProducts({products}) {
                   </div>
                   <div style={{height: '500px', position: 'relative'}}>
                     <img
-                      src="../../public/assets/margherita-membership.png"
+                      src="../../public/assets/margherita-membership.jpg"
                       alt={response.products.nodes[1].title || 'Product Image'}
                       style={{height: '100%', objectFit: 'cover'}}
                     />
@@ -175,7 +175,7 @@ export function RecommendedProducts({products}) {
 
                   <div style={{height: '500px', position: 'relative'}}>
                     <img
-                      src="../../public/assets/supreme-membership.png"
+                      src="../../public/assets/supreme-membership.jpg"
                       alt={response.products.nodes[2].title || 'Product Image'}
                       style={{height: '100%', objectFit: 'cover'}}
                     />
