@@ -34,12 +34,24 @@ export function Header({
 
   return (
     <div>
+      {/* <div
+        style={{
+          position: 'fixed',
+          top: '0',
+          left: '0',
+          width: '100%',
+          opacity: 100,
+          height: '70px', // Adjust height as needed
+          backgroundColor: 'rgb(57 45 34)', // Adjust color and opacity
+          zIndex: 1, // Ensures it's behind the menu
+        }}
+      ></div> */}
       <div
         style={{
           position: 'fixed',
           top: '10px',
           left: '20px',
-          zIndex: 1,
+          zIndex: 2,
           color: '#fff',
           padding: '10px',
           cursor: 'pointer',
@@ -167,7 +179,7 @@ export function HeaderMenu({
 function HeaderCtas({isLoggedIn, cart}) {
   return (
     <nav className="header-ctas" role="navigation">
-      <HeaderMenuMobileToggle />
+      {/* <HeaderMenuMobileToggle /> */}
       <NavLink prefetch="intent" to="/account" style={activeLinkStyle}>
         <Suspense fallback="Sign in">
           <Await resolve={isLoggedIn} errorElement="Sign in">

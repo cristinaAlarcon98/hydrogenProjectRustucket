@@ -1,5 +1,6 @@
 import {CartForm, Money} from '@shopify/hydrogen';
 import {useRef} from 'react';
+import Button from '@mui/material/Button';
 
 /**
  * @param {CartSummaryProps}
@@ -21,9 +22,9 @@ export function CartSummary({cart, layout}) {
           )}
         </dd>
       </dl>
-      <CartDiscounts discountCodes={cart.discountCodes} />
-      <CartGiftCard giftCardCodes={cart.appliedGiftCards} />
       <CartCheckoutActions checkoutUrl={cart.checkoutUrl} />
+      {/* <CartDiscounts discountCodes={cart.discountCodes} />
+      <CartGiftCard giftCardCodes={cart.appliedGiftCards} /> */}
     </div>
   );
 }
@@ -35,10 +36,12 @@ function CartCheckoutActions({checkoutUrl}) {
 
   return (
     <div>
-      <a href={checkoutUrl} target="_self">
-        <p>Continue to Checkout &rarr;</p>
-      </a>
-      <br />
+      <Button
+        style={{height: '20px'}}
+        onClick={() => (window.location.href = checkoutUrl)}
+      >
+        Go to checkout
+      </Button>
     </div>
   );
 }
